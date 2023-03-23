@@ -15,7 +15,7 @@ class DataTest(TestCase):
             city='New York',
             state='USA',
             country_iso_code='NY',
-            zip_code=99,
+            zip_code=22,
         )
         cls.address2 = Address.objects.create(
             number=55,
