@@ -40,7 +40,7 @@ class TestLettings(DataTest):
         self.client = Client()
         url = reverse("lettings")
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 99)
+        self.assertEqual(response.status_code, 200)
         self.assertContains(response, '<title>Lettings</title>')
         self.assertContains(response, self.letting1.title)
         self.assertContains(response, self.letting2.title)
