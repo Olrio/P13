@@ -44,6 +44,7 @@ class TestLettings(DataTest):
         self.assertContains(response, '<title>Lettings</title>')
         self.assertContains(response, self.letting1.title)
         self.assertContains(response, self.letting2.title)
+        self.assertTemplateUsed(response, "lettings/index.html")
 
     def test_letting(self):
         self.client = Client()
@@ -52,4 +53,4 @@ class TestLettings(DataTest):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, f'<title>{self.letting1.title}</title>')
         self.assertContains(response, self.letting1.address.street)
-
+        self.assertTemplateUsed(response, "lettings/letting.html")
