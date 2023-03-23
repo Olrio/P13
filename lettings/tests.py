@@ -44,4 +44,3 @@ class TestLettings(DataTest):
         self.assertContains(response, '<title>Lettings</title>')
         self.assertContains(response, self.letting1.title)
         self.assertContains(response, self.letting2.title)
-
