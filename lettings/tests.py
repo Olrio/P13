@@ -15,7 +15,7 @@ class DataTest(TestCase):
             city='New York',
             state='USA',
             country_iso_code='NY',
-            zip_code=22,
+            zip_code=100,
         )
         cls.address2 = Address.objects.create(
             number=55,
@@ -40,7 +40,7 @@ class TestLettings(DataTest):
         self.client = Client()
         url = reverse("lettings")
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
         self.assertContains(response, '<title>Lettings</title>')
         self.assertContains(response, self.letting1.title)
         self.assertContains(response, self.letting2.title)
