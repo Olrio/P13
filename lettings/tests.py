@@ -31,7 +31,7 @@ class DataTest(TestCase):
         )
         cls.letting2 = Letting.objects.create(
             address=cls.address2,
-            title='Bienvenue en Alsace',
+            title='Bienvenue en Alsace !!',
         )
 
 
