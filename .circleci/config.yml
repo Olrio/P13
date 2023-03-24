@@ -26,7 +26,6 @@ jobs:
             pip install -r requirements.txt
             python manage.py check
             flake8
-            pytest
 
   test:
     docker:
