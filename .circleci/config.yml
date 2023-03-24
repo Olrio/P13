@@ -28,8 +28,21 @@ jobs:
             flake8
             pytest
 
+  test:
+    docker:
+      - image: python:latest
+    steps:
+      - checkout
+      - run:
+          command:  |
+            python -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+            pytest
+
 workflows:
   build-workflow:
     jobs:
       - build
       - quality
+      - test
