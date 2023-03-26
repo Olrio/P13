@@ -41,7 +41,7 @@ jobs:
   
   deploy:
     docker:
-      - image: olrio/orange_lettings
+      - image: cimg/openjdk:latest
     steps:
       - checkout
       - setup_remote_docker
