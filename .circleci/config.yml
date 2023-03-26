@@ -39,9 +39,19 @@ jobs:
             pip install -r requirements.txt
             pytest
 
+  image_docker:
+    steps:
+      - run:
+          command: |
+            docker login
+            docker build -t olrio_orange_lettings .
+            docker tag olrio_orange_lettings:latest olrio/orange_lettings:latest
+            docker push olrio/orange_lettings:latest
+
 workflows:
   build-workflow:
     jobs:
       - build
       - quality
       - test
+      - image_docker
