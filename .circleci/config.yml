@@ -41,7 +41,7 @@ jobs:
   
   deploy:
     docker:
-      - image: cimg/python
+      - image: olrio/orange_lettings
     steps:
       - checkout
       - setup_remote_docker
