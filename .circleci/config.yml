@@ -41,7 +41,7 @@ jobs:
   
   deploy:
     docker:
-      - image: registry:latest
+      - image: cimg/python:latest
     steps:
       - checkout
       - setup_remote_docker
