@@ -38,25 +38,21 @@ jobs:
             source venv/bin/activate
             pip install -r requirements.txt
             pytest
-
-  image_docker:
-    executors:
-      docker-publisher:
-        environment:
-          IMAGE_NAME: olrio/orange_lettings2
-          docker:
-            - image: python:latest
-          auth:
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
+  
+  deploy:
+    docker:
+      - image: python:latest
     steps:
       - checkout
       - setup_remote_docker
       - run:
           command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" - password-stdin
-            docker build -t $IMAGE_NAME .
-            docker push $IMAGE_NAME:latest
+            docker build -t $HUB_NAME:latest
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+            docker tag $HUB_NAME $DOCKER_LOGIN/$HUB_NAME
+            docker push $DOCKER_LOGIN/$HUB_NAME
+    
+
 
 workflows:
   build-workflow:
@@ -64,4 +60,3 @@ workflows:
       - build
       - quality
       - test
-      - image_docker
