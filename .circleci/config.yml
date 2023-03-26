@@ -40,13 +40,23 @@ jobs:
             pytest
 
   image_docker:
+    executors:
+      docker-publisher:
+        environment:
+          IMAGE_NAME: olrio/orange_lettings2
+          docker:
+            - image: python:latest
+          auth:
+            username: $DOCKERHUB_USERNAME
+            password: $DOCKERHUB_PASSWORD
     steps:
+      - checkout
+      - setup_remote_docker
       - run:
           command: |
-            docker login
-            docker build -t olrio_orange_lettings .
-            docker tag olrio_orange_lettings:latest olrio/orange_lettings:latest
-            docker push olrio/orange_lettings:latest
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" - password-stdin
+            docker build -t $IMAGE_NAME .
+            docker push $IMAGE_NAME:latest
 
 workflows:
   build-workflow:
