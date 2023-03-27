@@ -51,7 +51,7 @@ jobs:
           name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
-            echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+            echo "$DOCKERHUB_PASS" | docker login --username "${DOCKERHUB_USERNAME}" --password-stdin
             docker push $IMAGE_NAME:latest
       
 
