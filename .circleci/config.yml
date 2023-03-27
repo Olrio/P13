@@ -51,8 +51,9 @@ jobs:
           name: Build Docker image
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
-            docker build -t $IMAGE_NAME:latest .
-            docker push $IMAGE_NAME:latest
+            docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
+            docker tag $IMAGE_NAME:$CIRCLE_SHA1 $DOCKER_USER/oc-lettings:lastest
+            docker push $IMAGE_NAME:l$CIRCLE_SHA1
                
 
 workflows:
