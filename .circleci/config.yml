@@ -52,7 +52,7 @@ jobs:
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
             docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
-            docker tag $IMAGE_NAME:$CIRCLE_SHA1 $DOCKER_USER/oc-lettings:lastest
+            docker tag $IMAGE_NAME:$CIRCLE_SHA1 $DOCKER_USER/oc-lettings
             docker push $IMAGE_NAME:l$CIRCLE_SHA1
                
 
