@@ -40,8 +40,6 @@ jobs:
             pytest
   
   docker_image:
-    environment:
-      IMAGE_NAME: olrio/orange_lettings
     docker:
       - image: cimg/base:current
     steps:
