@@ -51,10 +51,10 @@ jobs:
           name: Build Docker image
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
-            docker build -t $DOCKER_USER/orange_lettings:$CIRCLE_SHA1 .
-            docker tag $DOCKER_USER/orange_lettings:$CIRCLE_SHA1 $DOCKER_USER/orange_lettings:lastest
-            docker push $DOCKER_USER/orange_lettings:$CIRCLE_SHA1
-            docker push $DOCKER_USER/orange_lettings:lastest
+            docker build -t $DOCKERHUB_USER/orange_lettings:$CIRCLE_SHA1 .
+            docker tag $DOCKERHUB_USER/orange_lettings:$CIRCLE_SHA1 $DOCKERHUB_USER/orange_lettings:latest
+            docker push $DOCKERHUB_USER/orange_lettings:$CIRCLE_SHA1
+            docker push $DOCKERHUB_USER/orange_lettings:latest
                
 
 workflows:
