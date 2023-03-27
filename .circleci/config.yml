@@ -40,18 +40,17 @@ jobs:
             pytest
   
   deploy:
+    environment:
+      IMAGE_NAME: olrio/orange_lettings
     docker:
-      - image: python:latest
+      - image: circleci/buildpack-deps:stretch
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          command: |
-            pip install docker
-            docker build -t $HUB_NAME:latest
-            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker tag $HUB_NAME $DOCKER_LOGIN/$HUB_NAME
-            docker push $DOCKER_LOGIN/$HUB_NAME
+          name: Build Docker image
+          command: docker build -t $IMAGE_NAME:latest
+      
     
 
 
