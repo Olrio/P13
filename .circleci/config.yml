@@ -39,7 +39,7 @@ jobs:
             pip install -r requirements.txt
             pytest
   
-  deploy:
+  docker_image:
     environment:
       IMAGE_NAME: olrio/orange_lettings
     docker:
@@ -51,7 +51,8 @@ jobs:
           name: Build Docker image
           command: |
             docker build -t $IMAGE_NAME:latest .
-            docker images -a
+            echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+            docker push $IMAGE_NAME:latest
       
 
 workflows:
@@ -60,4 +61,4 @@ workflows:
       - build
       - quality
       - test
-      - deploy
+      - docker_image
