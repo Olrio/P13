@@ -43,7 +43,7 @@ jobs:
     environment:
       IMAGE_NAME: olrio/orange_lettings
     docker:
-      - image: cimg/buildpack-deps:latest
+      - image: cimg/base:latest
     steps:
       - checkout
       - setup_remote_docker
