@@ -50,10 +50,8 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-            docker tag $DOCKER_USER/oc-lettings:$CIRCLE_SHA1 $DOCKER_USER/oc-lettings:lastest
-            docker push $DOCKER_USER/oc-lettings:$CIRCLE_SHA1
-            docker push $DOCKER_USER/oc-lettings:lastest
+            echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
+            docker push $IMAGE_NAME:latest
                
 
 workflows:
