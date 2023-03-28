@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  heroku: circleci/heroku@7.60
+
 jobs:
   build:
     docker:
@@ -53,6 +56,20 @@ jobs:
             docker tag $DOCKERHUB_USER/orange_lettings:$CIRCLE_SHA1 $DOCKERHUB_USER/orange_lettings:latest
             docker push $DOCKERHUB_USER/orange_lettings:$CIRCLE_SHA1
             docker push $DOCKERHUB_USER/orange_lettings:latest
+
+  deploy:
+    docker:
+      - image: cimg/base
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run:
+          name: Deploy to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
                
 
 workflows:
@@ -62,3 +79,4 @@ workflows:
       - quality
       - test
       - docker_image
+      - deploy
