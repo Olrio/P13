@@ -41,7 +41,7 @@ jobs:
             source venv/bin/activate
             pip install -r requirements.txt
             pytest
-  
+
   docker_image:
     docker:
       - image: cimg/base:current
