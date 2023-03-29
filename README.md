@@ -74,4 +74,26 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`  
+
+## Déploiement  
+
+**Remarque** : Les outils d'intégration/développement continus (**CircleCI**) et de déploiement sur serveur (**Heroku**) décrits ci-après sont ceux qui ont été utilisés par l'auteur.  
+Des alternatives existent mais leur utilisation ne sera pas décrite ici.
+
+
+### Prérequis
+
+- Compte CircleCI 
+- Compte DockerHub
+- Compte Heroku
+
+### Création du pipeline d'intégration continue / déploiement continu (CI/CD)
+
+#### Liaison du compte CircleCI au compte GitHub  
+
+Le principe de l'intégration continue / déploiement continu (ou CI/CD) repose sur une automatisation des processus.  
+Les opérations de CI/CD sont paramétrées pour être mises en oeuvre lorsque certaines conditions sont réunies, généralement l'envoi sur GitHub d'une nouvelle version de l'application.  
+Cela suppose donc une liaison de votre repository GitHub à votre compte CircleCI.  
+
+Pour ce faire, 
