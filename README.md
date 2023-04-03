@@ -82,18 +82,55 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 Des alternatives existent mais leur utilisation ne sera pas décrite ici.
 
 
-### Prérequis
+### Prérequis (en plus de ceux cités précédemment)
 
 - Compte CircleCI 
 - Compte DockerHub
 - Compte Heroku
+- Heroku CLI
 
 ### Création du pipeline d'intégration continue / déploiement continu (CI/CD)
-
-#### Liaison du compte CircleCI au compte GitHub  
 
 Le principe de l'intégration continue / déploiement continu (ou CI/CD) repose sur une automatisation des processus.  
 Les opérations de CI/CD sont paramétrées pour être mises en oeuvre lorsque certaines conditions sont réunies, généralement l'envoi sur GitHub d'une nouvelle version de l'application.  
 Cela suppose donc une liaison de votre repository GitHub à votre compte CircleCI.  
 
-Pour ce faire, 
+#### Préparation du dépôt GitHub
+
+- Créez un dépôt GitHub dédié au projet
+- Localement, récupérez les scripts du projet : `git pull git@github.com:Olrio/P13.git`  
+- Créez et activez un environnement virtuel `venv` (conserver ce nom qui est utilisé dans les fichiers *.ignore* et *.setup*)  
+  `python -m venv venv` puis `source venv/bin/activate`  
+- Installez les packages requis : `pip install -r requirements.txt`  
+- Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
+- Poussez le projet dans votre dépôt GitHub  
+
+#### Connexion de CircleCI à votre dépôt GitHub
+
+- Connectez-vous à votre compte *CircleCI*  
+- Dans la page *Projects* de *CircleCI*, localisez votre compte GitHub et votre projet qui héberge le code de *Orange County Lettings*.  
+- Cliquez sur *Set-Up Project*, choisissez *fastest* et validez la branche principale (*main* ou *master*).  
+
+Le pipeline d'intégration continue se lance automatiquement et devrait échouer car à ce stade vous n'avez pas encore configuré *Docker* et *Heroku*.  
+Notez que si vous consultez votre projet sur votre dépôt GitHub, vous constatez la présence d'une croix rouge à côté du nom du dernier commit. En cliquant sur cette croix, vous retrouvez les informations sur les jobs CircleCI effectués.  
+
+Votre liaison GitHub/CircleCI est néanmoins désormais fonctionnelle.  
+
+### Création de l'image Docker via le pipeline CircleCI  
+
+Vous devez fournir à CircleCI votre identifiant et votre mot de passe DockerHub afin que le processus de création et publication d'images Docker via le pipeline s'effectue correctement.  
+
+Pour ce faire, choisissez *Projects* dans le menu de gauche, cliquez sur le nom de votre projet puis sur *Project Settings* à la droite de votre écran.  
+
+Sur la page des Settings de votre projet, choisissez *Environment variables* dans le menu de gauche.  
+
+Cliquez sur *Add Environment Variable*.  
+
+Saisissez `DOCKERHUB_USER` dans le champ *Name* et votre nom d'utilisateur DockerHub dans le champ *Value*.  
+Renouvelez l'opération pour la variable `DOCKERHUB_PASS` qui contient votre mot de passe pour vous connecter à votre compte DockerHub.  
+Ajoutez enfin une troisième variable d'environnement, `DOCKERHUB_REPO`, qui correspond au nom de votre dépôt DockerHub (sans le préfixe 'username /').  
+
+**Remarque :** Veillez à bien respecter le nom des variables d'environnement (DOCKERHUB_USER, DOCKERHUB_PASS et DOCKERHUB_REPO) pour un fonctionnement correct du pipeline CI/CD.
+
+Une fois l'image de votre application créée et envoyée sur Docker Hub, vous pouvez vérifier que le processus s'est correctement déroulé en entrant la commande suivante dans votre terminal : `docker run -p 8000:8000 <your DockerHub username>/<your DockerHub repo>:latest`
+
