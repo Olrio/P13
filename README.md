@@ -132,5 +132,26 @@ Ajoutez enfin une troisième variable d'environnement, `DOCKERHUB_REPO`, qui cor
 
 **Remarque :** Veillez à bien respecter le nom des variables d'environnement (DOCKERHUB_USER, DOCKERHUB_PASS et DOCKERHUB_REPO) pour un fonctionnement correct du pipeline CI/CD.
 
-Une fois l'image de votre application créée et envoyée sur Docker Hub, vous pouvez vérifier que le processus s'est correctement déroulé en entrant la commande suivante dans votre terminal : `docker run -p 8000:8000 <your DockerHub username>/<your DockerHub repo>:latest`
+Une fois l'image de votre application créée et envoyée sur Docker Hub, vous pouvez vérifier que le processus s'est correctement déroulé en entrant la commande suivante dans votre terminal : `docker pull <your DockerHub username>/<your DockerHub repo>:latest && docker run -p 8000:8000 <your DockerHub username>/<your DockerHub repo>:latest`
 
+### Déploiement sur Heroku  
+
+#### Création de l'application sur Heroku
+
+Dans un terminal : 
+- connectez-vous à Heroku avec la commande `heroku login`  
+- votre navigateur internet ouvre une page et vous devez cliquez sur *login*. Fournissez votre adresse email et votre mot de passe pour vous identifier sur Heroku.  
+- revenez à votre terminal qui devrait afficher : *Logging in... done Logged in as my email*  
+- saisissez `heroku create <app_name>`, app_name étant le nom de votre application déployée sur Heroku.  
+
+#### Configuration du pipeline CI/CD
+
+Le fichier *config.yml* de CircleCI gère l'interaction avec Heroku au moyen de variables d'environnement.  
+Dans l'onglet *Environment Variables* de votre projet CircleCI, ajoutez la variable `HEROKU_APP_NAME` qui prend comme valeur le nom de l'application app_name que vous venez de créer sur Heroku.  
+A des fins de sécurisation, vous devrez également ajouter une variable `HEROKU_API_KEY` dont la valeur est votre API_KEY que vous pouvez récupérer sur la page *Account* de votre compte Heroku.  
+
+La configuration de votre pipeline CI/CD est désormais terminée et il sera mis en oeuvre lorsque du nouveau contenu sera poussé sur votre dépôt GitHub.  
+
+**Remarque 1 :** Le déploiement sur Heroku ne concerne que le contenu de la branche *master* de votre projet.  Si votre branche principale est une branche *main*, vous devrez, soit la renommer en *master*, soit modifier le fichier *config.yml* et remplacer à la ligne 71 `master:master` par `main:master`.  
+
+**Remarque 2 :** Il est fortement recommandé de ne pas permettre de pousser du nouveau contenu directement sur la branche principale de votre dépôt GitHub. Utilisez une branche accessoire pour l'ajout de tout nouveau contenu puis poussez ce contenu dans une branche accessoire correspondante sur GitHub et effectuez une pull request pour intégrer le contenu à votre branche principale.  
