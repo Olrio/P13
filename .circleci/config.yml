@@ -78,7 +78,11 @@ workflows:
       - build
       - quality
       - test
-      - docker_image
+      - docker_image:
+          filters:
+            branches:
+              only:
+                master
       - deploy:
           filters:
             branches:

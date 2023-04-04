@@ -152,6 +152,6 @@ A des fins de sécurisation, vous devrez également ajouter une variable `HEROKU
 
 La configuration de votre pipeline CI/CD est désormais terminée et il sera mis en oeuvre lorsque du nouveau contenu sera poussé sur votre dépôt GitHub.  
 
-**Remarque 1 :** Le déploiement sur Heroku ne concerne que le contenu de la branche *master* de votre projet.  Si votre branche principale est une branche *main*, vous devrez, soit la renommer en *master*, soit modifier le fichier *config.yml* et remplacer à la ligne 71 `master:master` par `main:master`.  
+**Remarque 1 :** La conteneurisation Docker et le déploiement sur Heroku ne concernent que le contenu de la branche *master* de votre projet.  Si votre branche principale est une branche *main*, vous devrez, soit la renommer en *master*, soit modifier le fichier *config.yml* et remplacer à la ligne 71 `master:master` par `main:master`.  
 
 **Remarque 2 :** Il est fortement recommandé de ne pas permettre de pousser du nouveau contenu directement sur la branche principale de votre dépôt GitHub. Utilisez une branche accessoire pour l'ajout de tout nouveau contenu puis poussez ce contenu dans une branche accessoire correspondante sur GitHub et effectuez une pull request pour intégrer le contenu à votre branche principale.  
