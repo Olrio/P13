@@ -76,7 +76,9 @@ jobs:
               do if [ $app = "$HEROKU_APP_NAME" ]; 
                 then existing_app=1; 
               fi done
-            echo "$existing_app"
+            if [ $existing_app = 0 ];
+              then heroku create --app ${HEROKU_APP_NAME};
+            fi
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY="toto1234" --app ${HEROKU_APP_NAME}
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push web --app ${HEROKU_APP_NAME}
