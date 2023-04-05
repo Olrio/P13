@@ -65,6 +65,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
+      - heroku/install
       - run:
           name: Deploy to Heroku
           command: |
