@@ -65,6 +65,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
+      - setup_remote_docker
       - heroku/install
       - run:
           name: Deploy to Heroku
