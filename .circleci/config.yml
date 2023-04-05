@@ -95,7 +95,7 @@ workflows:
                 master
       - deploy:
           requires:
-            docker_image
+            - docker_image
           filters:
             branches:
               only: master
