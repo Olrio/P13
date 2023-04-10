@@ -4,6 +4,7 @@ import sentry_sdk
 # from sentry_sdk.integrations.django import DjangoIntegration
 
 
+sentry_sdk.set_user({"username": os.getlogin()})
 sentry_sdk.init(
     dsn="https://7b74c9fa7ff14cdc8f9769c41df938ab@o4504976715350016."
         "ingest.sentry.io/4504989126885376",
@@ -18,7 +19,7 @@ sentry_sdk.init(
 
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
+    send_default_pii=True,
 )
 
 
