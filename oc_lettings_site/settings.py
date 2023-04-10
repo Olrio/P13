@@ -1,9 +1,11 @@
 import os
 import dotenv
 import sentry_sdk
+import getpass
 # from sentry_sdk.integrations.django import DjangoIntegration
 
-print(os)
+current_user = getpass.getuser()
+sentry_sdk.set_user({"username": current_user})
 sentry_sdk.init(
     dsn="https://7b74c9fa7ff14cdc8f9769c41df938ab@o4504976715350016."
         "ingest.sentry.io/4504989126885376",
