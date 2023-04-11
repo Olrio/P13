@@ -1,27 +1,5 @@
 import os
 import dotenv
-import sentry_sdk
-import getpass
-# from sentry_sdk.integrations.django import DjangoIntegration
-
-current_user = getpass.getuser()
-sentry_sdk.set_user({"username": current_user})
-sentry_sdk.init(
-    dsn="https://7b74c9fa7ff14cdc8f9769c41df938ab@o4504976715350016."
-        "ingest.sentry.io/4504989126885376",
-    # integrations=[
-    #     DjangoIntegration(),
-    # ],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production,
-    traces_sample_rate=1.0,
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True,
-)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -37,7 +15,8 @@ dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
