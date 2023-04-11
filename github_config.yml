@@ -1,0 +1,10 @@
+name: environment variables management
+on:
+  pull:
+    branches: [ master ]
+jobs:
+  get-github-env-variables-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: var-for-ubuntu
+        run: env
