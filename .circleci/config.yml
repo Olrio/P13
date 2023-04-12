@@ -7,14 +7,18 @@ jobs:
   build:
     docker:
       - image: python:latest
+    environment:
+      DJANGO_SECRET_KEY:
     steps:
       - checkout
       - run:
           command:  |
+            echo "test secret key"
+            echo $DJANGO_SECRET_KEY
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
-            python manage.py -e SECRET_KEY='$DJANGO_SECRET_KEY' makemigrations
+            python manage.py makemigrations
             python manage.py migrate
 
   quality:
