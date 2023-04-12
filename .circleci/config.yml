@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run:
           command:  |
+            echo DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} >> .env
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
