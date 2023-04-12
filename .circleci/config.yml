@@ -52,7 +52,8 @@ jobs:
           name: Build Docker image
           command: |
             mkdir -p workspace
-            echo DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} >> workspace/.env
+            echo DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} >> .env
+            cp .env workspace
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
             docker build -t $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 .
             docker tag $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
