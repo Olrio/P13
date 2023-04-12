@@ -45,6 +45,7 @@ jobs:
   docker_image:
     docker:
       - image: cimg/base:current
+    working_directory: /tmp
     steps:
       - checkout
       - setup_remote_docker
@@ -72,13 +73,14 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - attach_workspace:
-          at: /workspace
+          at: /tmp/workspace
       - checkout
       - setup_remote_docker
       - heroku/install
       - run:
           name: Deploy to Heroku
           command: |
+            cp /tmp/workspace/.env ./
             my_apps=$(heroku apps)
             existing_app=0
             for app in $my_apps; 
