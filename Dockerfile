@@ -1,10 +1,13 @@
 FROM python:latest
 
 
+ARG django_secret_key
+
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV ALLOWED_HOSTS=["*"]
 ENV PORT=8000
+ENV DJANGO_SECRET_KEY=$django_secret_key
 
 ADD . /app/
 
