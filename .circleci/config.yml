@@ -45,7 +45,7 @@ jobs:
   docker_image:
     docker:
       - image: cimg/base:current
-    working_directory: /tmp
+    working_directory: ~/tmp
     steps:
       - checkout
       - setup_remote_docker
@@ -76,7 +76,7 @@ jobs:
       - setup_remote_docker
       - heroku/install
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/tmp/workspace
       - run:
           name: Deploy to Heroku
           command: |
