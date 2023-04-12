@@ -7,6 +7,8 @@ jobs:
   build:
     docker:
       - image: python:latest
+    environment:
+      - SECRET_KEY=$DJANGO_SECRET_KEY
     steps:
       - checkout
       - run:
