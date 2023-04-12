@@ -45,7 +45,7 @@ jobs:
   docker_image:
     docker:
       - image: cimg/base:current
-    working_directory: /tmp
+    working_directory: /home/circleci/project
     steps:
       - checkout
       - setup_remote_docker
@@ -73,7 +73,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: /home/circleci/project/workspace
       - checkout
       - setup_remote_docker
       - heroku/install
