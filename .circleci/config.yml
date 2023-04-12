@@ -45,8 +45,6 @@ jobs:
   docker_image:
     docker:
       - image: cimg/base:current
-    environment:
-      DJANGO_SECRET_KEY: $DJANGO_SECRET_KEY
     steps:
       - checkout
       - setup_remote_docker
@@ -54,7 +52,7 @@ jobs:
           name: Build Docker image
           command: |
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
-            docker build -t $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 .
+            docker build -t $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 . -e $DJANGO_SECRET_KEY
             docker tag $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
             docker push $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1
             docker push $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
