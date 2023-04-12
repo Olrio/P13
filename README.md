@@ -101,6 +101,7 @@ Cela suppose donc une liaison de votre repository GitHub à votre compte CircleC
 - Localement, récupérez les scripts du projet : `git pull git@github.com:Olrio/P13.git`  
 - Créez et activez un environnement virtuel `venv` (conserver ce nom qui est utilisé dans les fichiers *.ignore* et *.setup*)  
   `python -m venv venv` puis `source venv/bin/activate`  
+- Copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs. 
 - Installez les packages requis : `pip install -r requirements.txt`  
 - Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
 - Poussez le projet dans votre dépôt GitHub  
