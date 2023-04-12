@@ -51,12 +51,17 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            echo DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} >> .env
+            mkdir -p workspace
+            echo DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY} >> workspace/.env
             echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
             docker build -t $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 .
             docker tag $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1 $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
             docker push $DOCKERHUB_USER/$DOCKERHUB_REPO:$CIRCLE_SHA1
             docker push $DOCKERHUB_USER/$DOCKERHUB_REPO:latest
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - .env
 
   deploy:
     docker:
@@ -65,6 +70,8 @@ jobs:
           username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD
     steps:
+      - attach_workspace:
+          at: /workspace
       - checkout
       - setup_remote_docker
       - heroku/install
@@ -80,8 +87,6 @@ jobs:
             if [ $existing_app = 0 ];
               then heroku create --app ${HEROKU_APP_NAME};
             fi
-            echo 'secret key :'
-            echo ${DJANGO_SECRET_KEY}
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:set SECRET_KEY=${SECRET_KEY} --app ${HEROKU_APP_NAME}
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku config:get ${SENTRY_DSN} --app ${HEROKU_APP_NAME}
