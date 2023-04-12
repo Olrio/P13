@@ -80,7 +80,7 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
-            cp /tmp/workspace/.env ./
+            cp ~/tmp/workspace/.env ./
             my_apps=$(heroku apps)
             existing_app=0
             for app in $my_apps; 
