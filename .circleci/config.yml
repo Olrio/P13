@@ -11,8 +11,6 @@ jobs:
       - checkout
       - run:
           command:  |
-            echo "secret ="
-            echo ${DJANGO_SECRET_KEY}
             python -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
@@ -47,6 +45,8 @@ jobs:
   docker_image:
     docker:
       - image: cimg/base:current
+    environment:
+      DJANGO_SECRET_KEY: $DJANGO_SECRET_KEY
     steps:
       - checkout
       - setup_remote_docker
