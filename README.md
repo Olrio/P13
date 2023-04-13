@@ -101,7 +101,7 @@ Cela suppose donc une liaison de votre repository GitHub à votre compte CircleC
 - Localement, récupérez les scripts du projet : `git pull git@github.com:Olrio/P13.git`  
 - Créez et activez un environnement virtuel `venv` (conserver ce nom qui est utilisé dans les fichiers *.ignore* et *.setup*)  
   `python -m venv venv` puis `source venv/bin/activate`  
-- Copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs. 
+- Copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs et qui contient la clé de sécurité nécessaire au fonctionnement de cette application Django.   
 - Installez les packages requis : `pip install -r requirements.txt`  
 - Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
 - Poussez le projet dans votre dépôt GitHub  
@@ -129,7 +129,10 @@ Cliquez sur *Add Environment Variable*.
 
 Saisissez `DOCKERHUB_USER` dans le champ *Name* et votre nom d'utilisateur DockerHub dans le champ *Value*.  
 Renouvelez l'opération pour la variable `DOCKERHUB_PASS` qui contient votre mot de passe pour vous connecter à votre compte DockerHub.  
-Ajoutez enfin une troisième variable d'environnement, `DOCKERHUB_REPO`, qui correspond au nom de votre dépôt DockerHub (sans le préfixe 'username /').  
+Ajoutez une troisième variable d'environnement, `DOCKERHUB_REPO`, qui correspond au nom de votre dépôt DockerHub (sans le préfixe 'username /').  
+
+Enfin, créez la variable d'environnement `DJANGO_SECRET_KEY` qui contient la clé de sécurité de l'application Django. Sa valeur figure dans le fichier .env qui vous a été communiqué mais qui ne doit pas être publié sur GitHub.  
+
 
 **Remarque :** Veillez à bien respecter le nom des variables d'environnement (DOCKERHUB_USER, DOCKERHUB_PASS et DOCKERHUB_REPO) pour un fonctionnement correct du pipeline CI/CD.
 
@@ -151,8 +154,12 @@ Le fichier *config.yml* de CircleCI gère l'interaction avec Heroku au moyen de 
 Dans l'onglet *Environment Variables* de votre projet CircleCI, ajoutez la variable `HEROKU_APP_NAME` qui prend comme valeur le nom de l'application app_name que vous venez de créer sur Heroku.  
 A des fins de sécurisation, vous devrez également ajouter une variable `HEROKU_API_KEY` dont la valeur est votre API_KEY que vous pouvez récupérer sur la page *Account* de votre compte Heroku.  
 
+
 La configuration de votre pipeline CI/CD est désormais terminée et il sera mis en oeuvre lorsque du nouveau contenu sera poussé sur votre dépôt GitHub.  
 
 **Remarque 1 :** La conteneurisation Docker et le déploiement sur Heroku ne concernent que le contenu de la branche *master* de votre projet.  Si votre branche principale est une branche *main*, vous devrez, soit la renommer en *master*, soit modifier le fichier *config.yml* et remplacer à la ligne 71 `master:master` par `main:master`.  
 
 **Remarque 2 :** Il est fortement recommandé de ne pas permettre de pousser du nouveau contenu directement sur la branche principale de votre dépôt GitHub. Utilisez une branche accessoire pour l'ajout de tout nouveau contenu puis poussez ce contenu dans une branche accessoire correspondante sur GitHub et effectuez une pull request pour intégrer le contenu à votre branche principale.  
+
+### Utilisation de Sentry
+
