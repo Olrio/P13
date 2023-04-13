@@ -1,13 +1,8 @@
 import os
 import dotenv
 import sentry_sdk
+import getpass
 from sentry_sdk.integrations.django import DjangoIntegration
-
-
-sentry_sdk.init(
-    dsn=os.environ.get('SENTRY_DSN'),
-    integrations=[DjangoIntegration()]
-)
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -24,6 +19,13 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+current_user = getpass.getuser()
+sentry_sdk.set_user({"username": current_user})
+sentry_sdk.init(
+    dsn=os.environ.get('SENTRY_DSN'),
+    integrations=[DjangoIntegration()]
+)
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
