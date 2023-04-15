@@ -1,7 +1,6 @@
 name: Badges
 
-on:
-  push:
+on: push
 
 jobs:
   update-badges:
