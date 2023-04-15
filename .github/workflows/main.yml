@@ -1,0 +1,14 @@
+name: Badges
+
+on:
+  push:
+
+
+jobs:
+  update-badges:
+    name: Update Badge on current branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display current branch
+        run: |
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})"
