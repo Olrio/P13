@@ -11,11 +11,16 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           BRANCHNAME=${GITHUB_REF#refs/heads/}
-          sed -i "s+P13/tree/.*.svg.*+P13/tree/$BRANCHNAME.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME)  +" README.md
-          git config --global user.email "opm.rio@gmail.com"
-          git config --global user.name "Olrio"
-          git add README.md
-          git commit -m "README update badge"
-          git push
+          if grep -q "$BRANCHNAME.svg" README.md
+            then
+              exit
+            else
+              sed -i "s+P13/tree/.*.svg.*+P13/tree/$BRANCHNAME.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME)  +" README.md
+              git config --global user.email "opm.rio@gmail.com"
+              git config --global user.name "Olrio"
+              git add README.md
+              git commit -m "README update badge"
+              git push
+          fi
           
 
