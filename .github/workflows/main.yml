@@ -2,7 +2,6 @@ name: Badges
 
 on:
   push:
-    update_badges
 
 jobs:
   update-badges:
