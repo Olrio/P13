@@ -1,6 +1,9 @@
 ## Résumé
 
-Site web d'Orange County Lettings
+Site web d'Orange County Lettings  
+
+Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/new_dev.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/new_dev)  
+Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/master.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/master)
 
 ## Développement local
 
@@ -101,7 +104,7 @@ Cela suppose donc une liaison de votre repository GitHub à votre compte CircleC
 - Localement, récupérez les scripts du projet : `git pull git@github.com:Olrio/P13.git`  
 - Créez et activez un environnement virtuel `venv` (conserver ce nom qui est utilisé dans les fichiers *.ignore* et *.setup*)  
   `python -m venv venv` puis `source venv/bin/activate`  
-- Copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs et qui contient la clé de sécurité nécessaire au fonctionnement de cette application Django.   
+- Pour une utilisation locale, copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs et qui contient la clé de sécurité nécessaire au fonctionnement de cette application Django. Ce fichier `.env` ne doit pas être publié sur GitHub.  
 - Installez les packages requis : `pip install -r requirements.txt`  
 - Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
 - Poussez le projet dans votre dépôt GitHub  
@@ -131,10 +134,10 @@ Saisissez `DOCKERHUB_USER` dans le champ *Name* et votre nom d'utilisateur Docke
 Renouvelez l'opération pour la variable `DOCKERHUB_PASS` qui contient votre mot de passe pour vous connecter à votre compte DockerHub.  
 Ajoutez une troisième variable d'environnement, `DOCKERHUB_REPO`, qui correspond au nom de votre dépôt DockerHub (sans le préfixe 'username /').  
 
-Enfin, créez la variable d'environnement `DJANGO_SECRET_KEY` qui contient la clé de sécurité de l'application Django. Sa valeur figure dans le fichier .env qui vous a été communiqué mais qui ne doit pas être publié sur GitHub.  
+Enfin, créez la variable d'environnement `DJANGO_SECRET_KEY` qui contient la clé de sécurité de l'application Django. Sa valeur figure dans le fichier `.env` qui vous a été communiqué mais qui ne doit pas être publié sur GitHub.  
 
 
-**Remarque :** Veillez à bien respecter le nom des variables d'environnement (DOCKERHUB_USER, DOCKERHUB_PASS et DOCKERHUB_REPO) pour un fonctionnement correct du pipeline CI/CD.
+**Remarque :** Veillez à bien respecter le nom des variables d'environnement (DOCKERHUB_USER, DOCKERHUB_PASS, DOCKERHUB_REPO et DJANGO_SECRET_KEY) pour un fonctionnement correct du pipeline CI/CD.
 
 Une fois l'image de votre application créée et envoyée sur Docker Hub, vous pouvez vérifier que le processus s'est correctement déroulé en entrant la commande suivante dans votre terminal : `docker pull <your DockerHub username>/<your DockerHub repo>:latest && docker run -p 8000:8000 <your DockerHub username>/<your DockerHub repo>:latest`
 
@@ -144,7 +147,7 @@ Une fois l'image de votre application créée et envoyée sur Docker Hub, vous p
 
 Dans un terminal : 
 - connectez-vous à Heroku avec la commande `heroku login`  
-- votre navigateur internet ouvre une page et vous devez cliquez sur *login*. Fournissez votre adresse email et votre mot de passe pour vous identifier sur Heroku.  
+- votre navigateur internet ouvre une page et vous devez cliquer sur *login*. Fournissez votre adresse email et votre mot de passe pour vous identifier sur Heroku.  
 - revenez à votre terminal qui devrait afficher : *Logging in... done Logged in as my email*  
 - saisissez `heroku create <app_name>`, app_name étant le nom de votre application déployée sur Heroku.  
 
@@ -162,4 +165,18 @@ La configuration de votre pipeline CI/CD est désormais terminée et il sera mis
 **Remarque 2 :** Il est fortement recommandé de ne pas permettre de pousser du nouveau contenu directement sur la branche principale de votre dépôt GitHub. Utilisez une branche accessoire pour l'ajout de tout nouveau contenu puis poussez ce contenu dans une branche accessoire correspondante sur GitHub et effectuez une pull request pour intégrer le contenu à votre branche principale.  
 
 ### Utilisation de Sentry
+
+L'application utilise *Sentry* pour la journalisation des évènements.
+
+Il vous faut donc bénéficier d'un compte Sentry ou en créer un à défaut.  
+
+- Connectez-vous à votre compte *Sentry*
+- Créez un Projet dédié à l'application *Orange County Lettings*  
+- Rendez-vous à l'onglet *Project Details* de votre Projet et sélectionnez les *Settings* en haut à droite (roue crantée).  
+- Choisissez *Client Keys (DSN)* dans le menu à gauche  
+- Copiez la valeur de la clé DSN
+- Rendez-vous dans l'onglet *Environment Variables* des Settings de votre projet sur *CircleCI*  
+- Ajoutez une variable `SENTRY_DSN` dont la valeur est la clé DSN que vous venez de copier.  
+
+Votre pipeline CI/CD est maintenant relié à Sentry et lui transmet les erreurs survenues.
 
