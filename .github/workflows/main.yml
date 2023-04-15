@@ -15,3 +15,4 @@ jobs:
         run: |
           cat README.md
           echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
+          cat README.md
