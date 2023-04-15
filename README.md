@@ -4,9 +4,9 @@ Site web d'Orange County Lettings
 
 Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
 Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
-
+[![CircleCI]](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://app.circleci.com/pipelines/github/Olrio/P13?branch=testing_badges)
 ## Développement local
-
+[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)
 ### Prérequis
 
 - Compte GitHub avec accès en lecture à ce repository
