@@ -9,7 +9,10 @@ jobs:
     name: Update Badge on current branch
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
       - name: Display current branch
         run: |
+          ls -la
           cat README.md
           echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
