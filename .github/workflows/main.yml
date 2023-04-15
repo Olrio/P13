@@ -14,10 +14,13 @@ jobs:
       - run: |
           ls -la
           cat README.md
-          echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
+          touch toto.txt
+          echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" >> toto.txt
+          cat README.md >> toto.txt
           git config --global user.email "opm.rio@gmail.com"
           git config --global user.name "Olrio"
           cat README.md
+          cat toto.txt
 #          git add README.md
 #          git commit -m "README update"
 #          git push
