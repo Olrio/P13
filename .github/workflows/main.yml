@@ -17,6 +17,6 @@ jobs:
           git config --global user.email "opm.rio@gmail.com"
           git config --global user.name "Olrio"
           cat README.md
-          git add README.md
-          git commit -m "README update"
-          git push
+#          git add README.md
+#          git commit -m "README update"
+#          git push
