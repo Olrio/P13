@@ -12,7 +12,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Display current branch
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
         run: |
           echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
-          touch toto.txt
-          ls -la
+          git init
+          git config --global user.email "opm.rio@gmail.com"
+          git config --global user.name "Olrio"
+          git add README.md
+          git commit -m "README update"
+          git push
