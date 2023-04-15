@@ -12,13 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - run: |
-          cat README.md
           BRANCHNAME=${GITHUB_REF#refs/heads/}
           echo $BRANCHNAME
           sed -i "s+P13/tree/.*.svg.*+P13/tree/$BRANCHNAME.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME)+" README.md
-          cat README.md
-#          git config --global user.email "opm.rio@gmail.com"
-#          git config --global user.name "Olrio"
-#          git add README.md
-#          git commit -m "README update"
-#          git push
+          git config --global user.email "opm.rio@gmail.com"
+          git config --global user.name "Olrio"
+          git add README.md
+          git commit -m "README update"
+          git push
