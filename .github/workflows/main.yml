@@ -2,7 +2,9 @@ name: Badges
 
 on:
   push:
-
+    update_badges
+  pull_request:
+    master_badges
 
 jobs:
   update-badges:
@@ -20,3 +22,5 @@ jobs:
           git add README.md
           git commit -m "README update"
           git push
+          
+
