@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Display current branch
         run: |
-          echo "branch=$(echo ${GITHUB_REF#refs/heads/})"
+          echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
