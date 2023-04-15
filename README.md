@@ -2,6 +2,8 @@
 
 Site web d'Orange County Lettings  
 
+[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/master.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/master)
+
 ## Développement local
 
 ### Prérequis

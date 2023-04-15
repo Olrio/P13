@@ -12,18 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - run: |
-          if grep -q "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" README.md
-            then
-              exit
-            else
-              touch temp.txt
-              echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" >> temp.txt
-              cat README.md >> temp.txt
-              git config --global user.email "opm.rio@gmail.com"
-              git config --global user.name "Olrio"
-              mv temp.txt README.md
-          fi
           cat README.md
+          sed -i 's|[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/*.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/*)|[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})|g' README.md
+          cat README.md
+#          git config --global user.email "opm.rio@gmail.com"
+#          git config --global user.name "Olrio"
 #          git add README.md
 #          git commit -m "README update"
 #          git push
