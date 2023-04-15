@@ -14,6 +14,7 @@ jobs:
       - name: Display current branch
         run: |
           echo "[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/}.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/${GITHUB_REF#refs/heads/})" | cat - README.md | tee README.md
+          git init
           git config --global user.email "opm.rio@gmail.com"
           git config --global user.name "Olrio"
           git add README.md
