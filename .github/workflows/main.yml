@@ -15,7 +15,7 @@ jobs:
           cat README.md
           BRANCHNAME=${GITHUB_REF#refs/heads/}
           echo $BRANCHNAME
-          sed -i 's|[![CircleCI].*.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/.*)|[![CircleCI](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME)|g' README.md
+          sed -i "s+P13/tree/.*.svg.*+P13/tree/$BRANCHNAME.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/$BRANCHNAME)+" README.md
           cat README.md
 #          git config --global user.email "opm.rio@gmail.com"
 #          git config --global user.name "Olrio"
