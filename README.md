@@ -2,8 +2,8 @@
 
 #### Site web d'Orange County Lettings  
 
-#### Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
-#### Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/master.svg)](https://circleci.com/gh/Olrio/P13/tree/master)    
+#### Master branch : [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Olrio/P13/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Olrio/P13/tree/master)  
+#### Development branch : [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Olrio/P13/tree/new_dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Olrio/P13/tree/new_dev)
 
 ## Développement local
 ### Prérequis
