@@ -10,9 +10,7 @@
   <img src="https://img.shields.io/docker/image-size/olrio/orange_lettings?label=docker image size" alt="">
 </p>
 
-
 ## Développement local
-
 ### Prérequis
 
 - Compte GitHub avec accès en lecture à ce repository
@@ -112,7 +110,7 @@ Cela suppose donc une liaison de votre repository GitHub à votre compte CircleC
   `python -m venv venv` puis `source venv/bin/activate`  
 - Pour une utilisation locale, copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs et qui contient la clé de sécurité nécessaire au fonctionnement de cette application Django. Ce fichier `.env` ne doit pas être publié sur GitHub.  
 - Installez les packages requis : `pip install -r requirements.txt`  
-- Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
+- Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur    à la page `http://127.0.0.1:8000/`  
 - Poussez le projet dans votre dépôt GitHub  
 
 #### Connexion de CircleCI à votre dépôt GitHub
