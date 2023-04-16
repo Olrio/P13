@@ -3,7 +3,7 @@
 #### Site web d'Orange County Lettings  
  
 <p>
-  <img src="https://img.shields.io/circleci/build/gh/Olrio/P13/new_dev?label=CircleCI development branch" alt="">
+  <img href="https://app.circleci.com/pipelines/github/Olrio/P13?branch=new_dev" src="https://img.shields.io/circleci/build/gh/Olrio/P13/new_dev?label=CircleCI development branch" alt="">
 </p>
 <p>
   <img src="https://img.shields.io/circleci/build/gh/Olrio/P13/master?label=CircleCI master branch" alt="">
