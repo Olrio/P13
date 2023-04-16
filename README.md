@@ -1,9 +1,14 @@
 ## Résumé
 
-#### Site web d'Orange County Lettings  
+### Site web d'Orange County Lettings  
 
-#### Master branch : [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Olrio/P13/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Olrio/P13/tree/master)  
-#### Development branch : [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Olrio/P13/tree/new_dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Olrio/P13/tree/new_dev)
+### Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/new_dev.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/new_dev)  
+### Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/master.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/master)
+
+<p>
+  <img src="https://img.shields.io/github/last-commit/Olrio/P13" alt="">
+  <img src="https://img.shields.io/docker/image-size/olrio/orange_lettings?label=docker image size" alt="">
+</p>
 
 ## Développement local
 ### Prérequis
