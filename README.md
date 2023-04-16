@@ -1,12 +1,11 @@
 ## Résumé
 
-Site web d'Orange County Lettings  
+#### Site web d'Orange County Lettings  
 
-Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
-Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg?style=svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
+#### Branche développement : [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/testing_badges.svg)](https://circleci.com/gh/Olrio/P13/tree/testing_badges)  
+#### Branche master: [![CircleCI](https://circleci.com/gh/Olrio/P13/tree/master.svg)](https://circleci.com/gh/Olrio/P13/tree/master)    
 
 ## Développement local
-
 ### Prérequis
 
 - Compte GitHub avec accès en lecture à ce repository
@@ -106,7 +105,7 @@ Cela suppose donc une liaison de votre repository GitHub à votre compte CircleC
   `python -m venv venv` puis `source venv/bin/activate`  
 - Pour une utilisation locale, copiez à la racine de votre projet le fichier `.env` qui vous a été fourni par ailleurs et qui contient la clé de sécurité nécessaire au fonctionnement de cette application Django. Ce fichier `.env` ne doit pas être publié sur GitHub.  
 - Installez les packages requis : `pip install -r requirements.txt`  
-- Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur web à la page `http://127.0.0.1:8000/`  
+- Vous pouvez vérifier que votre installation est fonctionnelle en lançant l'application `python manage.py runserver` et en ouvrant un navigateur    à la page `http://127.0.0.1:8000/`  
 - Poussez le projet dans votre dépôt GitHub  
 
 #### Connexion de CircleCI à votre dépôt GitHub
